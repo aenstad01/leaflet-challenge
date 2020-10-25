@@ -24,6 +24,9 @@ function createMap(earthquakes) {
     "Earthquakes": earthquakes
   };
 
+
+
+
   // Create the map object with options
   var map = L.map("map-id", {
     center: [40.73, -74.0059],
@@ -78,29 +81,44 @@ function createMarkers(response) {
 
         }).bindPopup("<h3> Location: " + earthquake.properties.place + "</h3><h3>Magnitude: " + magnitude + "</h3>" + "</h3><h3>Depth: " + depth + "</h3>" + "</h3><h3><a href='" + detailLink + "' target='_blank'>See Details</a></h3>");
 
-
-
         // Add the marker to the bikeMarkers array
         earthquakeMarkers.push(earthquakeMarker);
       }
 
-  
+
 
   // Create a layer group made from the bike markers array, pass it into the createMap function
   createMap(L.layerGroup(earthquakeMarkers));
 }
 
-
-// Perform an API call to the Citi Bike API to get station information. Call createMarkers when complete
+// Perform the API call to retrieve earthquake info
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(createMarkers);
 
+// GEOJSON
 
-//   L.circle(cities[i].location, {
-//     fillOpacity: 0.75,
-//     color: "white",
-//     fillColor: "purple",
-//     // Setting our circle's radius equal to the output of our markerSize function
-//     // This will make our marker's size proportionate to its population
-//     radius: markerSize(cities[i].population)
-//   }).bindPopup("<h1>" + cities[i].name + "</h1> <hr> <h3>Population: " + cities[i].population + "</h3>").addTo(myMap);
+
+
+
+
+// for (var index = 0; index < geojsonFeature.features.length; index++) {
+//   plateCoordinates.push(geojsonFeature.geometry.coordinates[index]);
 // }
+
+  
+// var myLines = [{
+//   "type": "LineString",
+//   "coordinates": [[-100, 40], [-105, 45], [-110, 55]]
+// }, {
+//   "type": "LineString",
+//   "coordinates": [[-105, 40], [-110, 45], [-115, 55]]
+// }];
+
+// var myStyle = {
+//   "color": "#ff7800",
+//   "weight": 5,
+//   "opacity": 0.65
+// };
+
+// L.geoJSON(myLines, {
+//   style: myStyle
+// }).addTo(map);
