@@ -53,7 +53,10 @@ function createMarkers(response) {
         lon = earthquake.geometry.coordinates[0];
         lat = earthquake.geometry.coordinates[1];
         depth = earthquake.geometry.coordinates[2];
+        magnitude = earthquake.properties.mag;
+        detailLink = earthquake.properties.detail;
 
+        // Logic to decide what colors the bubbles are
         if (depth > 8) {
           color = "red";
         }
@@ -69,19 +72,19 @@ function createMarkers(response) {
 
         // For each earthquake location, create a marker and bind a popup with the earthquakes's name
         var earthquakeMarker = L.circle(([lat, lon]), {
-          radius: (depth * 2000),
+          radius: (magnitude * 20000),
           color: color,
           fillColor: color
 
-        }).bindPopup("<h3>" + earthquake.properties.place + "<h3><h3>Capacity: " + earthquake.capacity + "</h3>");
+        }).bindPopup("<h3> Location: " + earthquake.properties.place + "</h3><h3>Magnitude: " + magnitude + "</h3>" + "</h3><h3>Depth: " + depth + "</h3>" + "</h3><h3><a href='" + detailLink + "' target='_blank'>See Details</a></h3>");
+
+
 
         // Add the marker to the bikeMarkers array
         earthquakeMarkers.push(earthquakeMarker);
       }
 
   
-
-
 
   // Create a layer group made from the bike markers array, pass it into the createMap function
   createMap(L.layerGroup(earthquakeMarkers));
