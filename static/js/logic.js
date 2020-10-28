@@ -100,37 +100,35 @@ function createMarkers(response) {
 }
 
 
-//Add a legend 
-//chloropleth activity
+//Add a legend (see 2.4 activity)
 
 
 // Perform the API call to retrieve earthquake info
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(createMarkers);
 
 
-//////////// now entering the work in progress section /////////////////
+  //\\//\\ now entering the work in progress area //\\//\\
 
 // Techtonic plates
-d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(createTechtonicPlates)
+d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(createTechtonicPlates);
 
 function createTechtonicPlates(response) {
+  console.log("hi");
   var coordinates = response.features[0].geometry.coordinates;
   var geometry = response.features[0].geometry;
 
   var techtonicPlates = [geometry];
 
+  console.log(techtonicPlates);
+
   L.geoJSON(techtonicPlates, {
   }).addTo(map);
+}
 
-
-
-// GEOJSON
+// Code from Niharika (not working)
 
 // function addTechtonicPlates(techtonicPlates) {
 // d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json", function(tdata) {
 //   L.geoJSON(tdata, {
 //   }).addTo(techtonicPlates);
 //   techtonicPlates.addTo(map);
-
-// });
-// }
