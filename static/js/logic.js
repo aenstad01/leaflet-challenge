@@ -49,6 +49,33 @@ function createMap(earthquakes) {
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(map);
+  
+    var info = L.control({
+    position: "bottomright"
+  });
+
+  // When the layer control is added, insert a div with the class of "legend"
+  info.onAdd = function () {
+    var div = L.DomUtil.create("div", "legend");
+    return div;
+  };
+  // Add the info legend to the map
+  info.addTo(map);
+
+  updateLegend();
+
+  // Update the legend's innerHTML
+  function updateLegend() {
+    document.querySelector(".legend").innerHTML = [
+      "<p>Earthquake Depth:</p>",
+      "<p>Red: Depth > 8</p>",
+      "<p>Orange: Depth > 5</p>",
+      "<p>Dark Yellow: Depth > 3</p>",
+      "<p>Light Yellow: Depth >= 0</p>"
+    ].join("");
+  }
+}
+  
 }
 
 // Create the map markers
