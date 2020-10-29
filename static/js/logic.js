@@ -76,7 +76,6 @@ function createMap(earthquakes) {
   }
 }
   
-}
 
 // Create the map markers
 function createMarkers(response) {
