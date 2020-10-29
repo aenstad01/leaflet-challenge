@@ -44,6 +44,7 @@ function createMap(earthquakes) {
     layers: [satelliteMap, earthquakes]
   });
 
+
   // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
@@ -80,7 +81,7 @@ function createMarkers(response) {
       color = "yellow";
     }
     else {
-      color = "grey";
+      color = "#FFFFC2";
     }
 
     // For each earthquake location, create a marker and bind a popup with the earthquakes's name
@@ -97,8 +98,8 @@ function createMarkers(response) {
 
   // Create a layer group made from the earthquake markers array, pass it into the createMap function
   createMap(L.layerGroup(earthquakeMarkers));
-}
 
+}
 
 //Add a legend (see 2.4 activity)
 
@@ -107,23 +108,30 @@ function createMarkers(response) {
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson").then(createMarkers);
 
 
-  //\\//\\ now entering the work in progress area //\\//\\
+  //\\//\\ Bonus Section //\\//\\
 
-// Techtonic plates
-d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(createTechtonicPlates);
+// // Techtonic plates
+// d3.json("https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json").then(createTechtonicPlates);
 
-function createTechtonicPlates(response) {
-  console.log("hi");
-  var coordinates = response.features[0].geometry.coordinates;
-  var geometry = response.features[0].geometry;
 
-  var techtonicPlates = [geometry];
+// function createTechtonicPlates(response) {
+//   var coordinates = response.features[0].geometry.coordinates;
+//   var geometry = response.features[0].geometry;
 
-  console.log(techtonicPlates);
+//   var techtonicPlates = [geometry];
 
-  L.geoJSON(techtonicPlates, {
-  }).addTo(map);
-}
+//   console.log(techtonicPlates);
+
+//   L.geoJSON(techtonicPlates, {
+//   }).addTo(map);
+// }
+
+
+
+
+
+
+
 
 // Code from Niharika (not working)
 
